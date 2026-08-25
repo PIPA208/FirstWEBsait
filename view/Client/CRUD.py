@@ -3,7 +3,7 @@ from dataclasses import dataclass,field
 from view.Client.shemas import Client , ClientCreate
 @dataclass
 class data:
-    last_id : int
+    last_id : int = 0
     clients : dict[int : Client] = field( default_factory= dict )
 
     @property
@@ -14,13 +14,15 @@ class data:
     def Client_List(self) -> list:
         return list(self.clients.values())
 
-    def Client_Create(self, new_client : ClientCreate) -> clients:
-        Client[self.next_id] = new_client.model_dump()
-        self.clients[self.last_id] = Client
-        return Client, self.clients
+    def Client_Create(self, new_client : ClientCreate) -> Client:
+        client = Client(id = self.next_id, **new_client.model_dump())
+        self.clients[self.last_id] = client
+        return client
 
-    def Client_Delete(self,id):
-        return self.clients.pop(id)
+    def Client_Delete(self,id : int):
+        return self.clients.pop(id,None)
 
-    def Client_Id(self,id):
-        return self.clients.get(id,False)
+    def Client_Id(self,id : int):
+        return self.clients.get(id,None)
+
+DataClient = data()
