@@ -11,7 +11,7 @@ class data:
         self.last_id += 1
         return self.last_id
 
-    def Client_List(self) -> list:
+    def Client_List(self) -> list[clients]:
         return list(self.clients.values())
 
     def Client_Create(self, new_client : ClientCreate) -> Client:
@@ -19,10 +19,10 @@ class data:
         self.clients[self.last_id] = client
         return client
 
-    def Client_Delete(self,id : int):
+    def Client_Delete(self,id : int) -> clients:
         return self.clients.pop(id,None)
 
-    def Client_Id(self,id : int):
+    def Client_Id(self,id : int) -> clients:
         return self.clients.get(id,None)
 
 DataClient = data()
