@@ -64,7 +64,7 @@ def Client_create(client : ClientCreate) -> Client:
         }
     }
 )
-def Clien_id(id : int) -> status:
+def Clien_id(id : int) -> None:
     if DataClient.Client_Delete(id) is not None:
         return HTTPException(status_code= status.HTTP_200_OK)
     raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
